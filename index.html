@@ -10,45 +10,88 @@
     <link rel="stylesheet" href="./styles/styles.css" />
   </head>
   <body>
-    <header>
+    <header class="header">
       <h1>30 Days Days Of JavaScript Challenge Leaderboard</h1>
     </header>
     <main>
-      <div class="inputs-buttons">
-        <label for="first-name"></label>
-        <input
-          type="text"
-          id="first-name"
-          name="inputs-lader"
-          placeholder="First Name"
-        />
-        <label for="last-name"></label>
-        <input
-          type="text"
-          id="last-name"
-          name="inputs-lader"
-          placeholder="Last Name"
-        />
-        <label for="country"></label>
-        <input
-          type="text"
-          id="country"
-          name="inputs-lader"
-          placeholder="Country"
-        />
-        <label for="player-score"></label>
-        <input
-          type="text"
-          id="player-score"
-          name="inputs-lader"
-          placeholder="Player Score"
-        />
+      <div class="wrapper">
+        <form class="inputs-buttons">
+          <label for="first-name"></label>
+          <input
+            type="text"
+            id="first-name"
+            name="inputs-lader"
+            placeholder="First Name"
+          />
+          <label for="last-name"></label>
+          <input
+            type="text"
+            id="last-name"
+            name="inputs-lader"
+            placeholder="Last Name"
+          />
+          <label for="country"></label>
+          <input
+            type="text"
+            id="country"
+            name="inputs-lader"
+            placeholder="Country"
+          />
+          <label for="player-score"></label>
+          <input
+            type="text"
+            id="player-score"
+            name="inputs-lader"
+            placeholder="Player Score"
+          />
+          <button type="submit" class="add-player">Add Player</button>
+        </form>
         <p class="signal"></p>
-        <button class="add-player">Add Player</button>
-        <p class="message"></p>
-        <ul class="table-scores"></ul>
+        <ul class="table-scores">
+          <li class="score">
+            <p class="full-name">MARTHA YOHANES</p>
+            <p class="country">FINLAND</p>
+            <p class="ps">85</p>
+            <div class="actions">
+              <button class="del"><box-icon name="trash"></box-icon></button>
+              <button class="plus">+5</button>
+              <button class="minor">-5</button>
+            </div>
+          </li>
+          <li class="score">
+            <p class="full-name">DAVID SMITH</p>
+            <p class="country">UNITED KINDOM</p>
+            <p class="ps">80</p>
+            <div class="actions">
+              <button class="del"><box-icon name="trash"></box-icon></button>
+              <button class="plus">+5</button>
+              <button class="minor">-5</button>
+            </div>
+          </li>
+          <li class="score">
+            <p class="full-name">ASABENEH YETAYE</p>
+            <p class="country">FINLAND</p>
+            <p class="ps">75</p>
+            <div class="actions">
+              <button class="del"><box-icon name="trash"></box-icon></button>
+              <button class="plus">+5</button>
+              <button class="minor">-5</button>
+            </div>
+          </li>
+          <li class="score">
+            <p class="full-name">MATHIAS ELIAS</p>
+            <p class="country">SWEDEN</p>
+            <p class="ps">70</p>
+            <div class="actions">
+              <button class="del"><box-icon name="trash"></box-icon></button>
+              <button class="plus">+5</button>
+              <button class="minor">-5</button>
+            </div>
+          </li>
+        </ul>
       </div>
     </main>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="./scripts/main..js"></script>
   </body>
 </html>

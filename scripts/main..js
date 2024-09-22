@@ -10,22 +10,64 @@ const lName = document.querySelector("#last-name");
 const country = document.querySelector("#country");
 const pS = document.querySelector("#player-score");
 
-// Div and Divfather
+const form = document.querySelector("form");
 const ul = document.querySelector(".table-scores");
-let li;
-let p1;
-let p2;
-let p3;
-let p4;
-let divB;
-let btn1;
-let btn2;
-let btn3;
-let span;
-let btns;
+
+const players = [
+  {
+    name: "MARTHA YOHANES",
+    country: "FINLAND",
+    score: 85,
+  },
+  {
+    name: "DAVID SMITH",
+    country: "UNITED KIMDOM",
+    score: 80,
+  },
+  {
+    name: "ASABENEH YETAYEH",
+    country: "FINLAND",
+    score: 75,
+  },
+  {
+    name: "MATHIAS ELIAS",
+    country: "SWEDEN",
+    score: 70,
+  },
+];
 
 // Events
-button.addEventListener("click", () => {
+
+function renderLeaderboard() {
+  players.sort((a, b) => b.score - a.score);
+
+  ul.innerHTML = "";
+
+  players.forEach((player, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+    <li class="score">
+    <p class="full-name">${player.name}</p>
+          <p class="country">${player.country}</p>
+          <p class="ps">${player.score}</p>
+          <div class="actions">
+            <button class="del" onclick="removePlayer(${index})"><box-icon name='trash' size="xs"></box-icon></button>
+            <button class="plus" onclick="changeScore(${index}, 5)">+5</button>
+            <button class="minor" onclick="changeScore(${index}, -5)">-5</button>
+          </div>
+        </li>`;
+
+    ul.appendChild(li);
+  });
+}
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const fullName = document.querySelector("#first-name");
+  const country = document.querySelector("#country");
+  const ps = document.querySelector("#player-score");
+
   if (
     name.value === "" ||
     lName.value === "" ||
@@ -35,92 +77,34 @@ button.addEventListener("click", () => {
     signal.innerHTML = "All fields are required";
   } else {
     signal.innerHTML = "";
-    // Creando el elemennnto li y añadiendolo a la clase padre
-    li = document.createElement("li");
-    li.setAttribute("class", "score");
-    ul.append(li);
-
-    // Creamos los valores que van dentro del elemento li
-    p1 = document.createElement("p");
-    p1.setAttribute("class", "full-name");
-    p1.innerText =
-      name.value.toUpperCase() + " " + lName.value.toUpperCase() + " ";
-    p2 = document.createElement("p");
-    p2.setAttribute("class", "country");
-    p2.innerHTML = country.value.toUpperCase();
-    p3 = document.createElement("p");
-    p3.setAttribute("class", "ps");
-    p3.innerHTML = parseInt(pS.value);
-    li.appendChild(p1);
-    li.appendChild(p2);
-    li.appendChild(p3);
-    li.appendChild(addDeleteBtn());
-    li.appendChild(addPlusBtn());
-    li.appendChild(minorPlusBtn());
-
-    // reseteando inputs
-    name.value = "";
-    lName.value = "";
-    country.value = "";
-    pS.value = "";
+    players.push({
+      name: fullName.value.toUpperCase(),
+      country: country.value.toUpperCase(),
+      score: parseInt(ps.value),
+    });
   }
+
+  form.reset();
+
+  renderLeaderboard();
 });
 
-// ADD BUTTONS
-function addDeleteBtn() {
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "del";
-  deleteBtn.className = "del";
-
-  deleteBtn.addEventListener("click", (e) => {
-    const item = e.target.parentElement;
-    ul.removeChild(item);
-
-    const li = document.querySelectorAll(".scores");
-    const message = document.querySelector(".message");
-
-    if (li.length === 0) {
-      message.innerHTML = "Add Players";
-    } else {
-      message.innerHTML = "";
-    }
-  });
-  return deleteBtn;
+function changeScore(index, value) {
+  players[index].score += value;
+  renderLeaderboard();
 }
 
-function addPlusBtn() {
-  const plusBtn = document.createElement("button");
-  plusBtn.setAttribute("class", "plus");
-  plusBtn.textContent = "+5";
+function removePlayer(index) {
+  players.splice(index, 1);
+  renderLeaderboard();
 
-  plusBtn.addEventListener("click", function () {
-    const scoreE = this.parentElement.querySelector(".ps");
+  // const li = document.querySelector("li");
 
-    let currentScore = parseInt(scoreE.textContent);
-
-    currentScore += 5;
-    scoreE.textContent = currentScore;
-  });
-  return plusBtn;
+  if (players.length === 0) {
+    signal.textContent = "Add Players";
+  } else {
+    signal.textContent = "";
+  }
 }
 
-function minorPlusBtn() {
-  const minorBtn = document.createElement("button");
-  minorBtn.className = "minor";
-  minorBtn.textContent = "-5";
-
-  minorBtn.addEventListener("click", function () {
-    const scoreE = this.parentElement.querySelector(".ps");
-
-    let currentScore = parseInt(scoreE.textContent);
-
-    currentScore -= 5;
-    scoreE.textContent = currentScore;
-  });
-  return minorBtn;
-}
-
-const entries = Array.from();
-
-// Limpiar el leaderboard y reordenar los elementos
-// ul.innerHTML = "";
+renderLeaderboard();

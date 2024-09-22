@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -9,6 +10,7 @@
   --bg-color: rgb(231, 230, 230);
   --main-color: rgb(175, 175, 175);
   --text-color: white;
+  --text-warning: rgb(187, 11, 11);
 }
 
 html {
@@ -17,4 +19,73 @@ html {
 
 body {
   background-color: var(--bg-color);
+}
+
+.header {
+  text-align: center;
+  margin: 10px;
+}
+
+.wrapper {
+  display: grid;
+  place-content: center;
+}
+
+.inputs-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.inputs-buttons input {
+  width: 25%;
+  padding: 10px;
+}
+
+.add-player {
+  width: 25%;
+  background-color: gray;
+  color: var(--text-color);
+  font-size: 24px;
+  border: none;
+}
+
+.signal {
+  color: var(--text-warning);
+  text-align: center;
+  font-weight: 600;
+}
+
+.score {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--main-color);
+  color: var(--text-color);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* .full-name,
+.country,
+.ps {
+  font-weight: 600;
+} */
+
+.del,
+.plus,
+.minor {
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  transition: 0.3s ease-in-out;
+}
+
+.del:hover {
+  background-color: var(--text-warning);
+}
+.plus:hover,
+.minor:hover {
+  background-color: green;
 }
