@@ -55,6 +55,7 @@ body {
   color: var(--text-warning);
   text-align: center;
   font-weight: 600;
+  margin: 10px;
 }
 
 .score {
@@ -64,14 +65,19 @@ body {
   background-color: var(--main-color);
   color: var(--text-color);
   padding: 10px;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
-/* .full-name,
-.country,
-.ps {
-  font-weight: 600;
-} */
+.full-name span {
+  display: block;
+  text-align: left;
+  font-weight: 100;
+}
+
+.country span {
+  justify-content: left;
+}
 
 .del,
 .plus,
@@ -83,9 +89,9 @@ body {
 }
 
 .del:hover {
-  background-color: var(--text-warning);
+  background-color: rgb(245, 42, 42);
 }
 .plus:hover,
 .minor:hover {
-  background-color: green;
+  background-color: rgb(7, 179, 7);
 }

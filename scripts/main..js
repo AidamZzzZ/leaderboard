@@ -39,6 +39,12 @@ const players = [
 // Events
 
 function renderLeaderboard() {
+  const now = new Date();
+  let day = now.getDay();
+  let year = now.getFullYear();
+  let hour = now.getHours();
+  let minutes = now.getMinutes();
+
   players.sort((a, b) => b.score - a.score);
 
   ul.innerHTML = "";
@@ -46,9 +52,9 @@ function renderLeaderboard() {
   players.forEach((player, index) => {
     const li = document.createElement("li");
     li.innerHTML = `
-    <li class="score">
-    <p class="full-name">${player.name}</p>
-          <p class="country">${player.country}</p>
+        <li class="score">
+          <p class="full-name">${player.name} <span class="date">SEP ${day}, ${year} ${hour}:${minutes}</span></p>
+          <p class="country"><span>${player.country}</span></p>
           <p class="ps">${player.score}</p>
           <div class="actions">
             <button class="del" onclick="removePlayer(${index})"><box-icon name='trash' size="xs"></box-icon></button>
